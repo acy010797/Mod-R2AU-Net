@@ -52,3 +52,5 @@ The Mod-R2AU-Net architecture, as shown, is designed to achieve state-of-the-art
 I used several metrics to track the progress of training for the proposed model, including Accuracy, Loss, Dice Coefficient, and Intersection over Union (IoU). By monitoring these metrics throughout the training process, we gain a comprehensive understanding of the model’s performance. This approach allows us to make necessary adjustments and improvements to ensure that the Mod-R2AU-Net model achieves optimal accuracy and reliability in brain tumor segmentation.
 ![Results](https://github.com/user-attachments/assets/3332b476-58c2-42ce-a607-1fcb3847cff6)
 Training and Validation Metrics (Accuracy, Loss, Dice Coefficient, IoU) on BRATS 2020 Dataset.
+
+# Citation
