@@ -6,7 +6,7 @@ The R2CL blocks are employed in both the encoder and decoder paths, utilizing re
 Batch Normalization (BN) is incorporated to stabilize and accelerate the training process, ensuring that each layer’s input is appropriately scaled and distributed. This results in faster convergence and improved generalization, making the model more robust in various segmentation tasks.
 
 Despite its advanced architecture, Mod-R2AU-Net remains computationally efficient, reducing the number of parameters and computational demands while delivering high accuracy. With 212 GFlops and 21.3M parameters, it is a lightweight model suitable for deployment in real-world clinical settings. These optimizations allow for faster processing times and resource-friendly deployment on modern hardware, such as GPUs, making the model ideal for large-scale MRI datasets. Mod-R2AU-Net’s combination of R2CL, AGs, and BN ensures a strong balance between computational efficiency and precise brain tumor segmentation, making it a powerful tool for medical professionals and researchers.
-## Proposed Architecture of Mod-R2AU-Net for Brain Tumor Segmentation
+## Proposed Architecture of Mod-R2AU-Net 
 
 The graphical abstract illustrates the overall architecture of the Mod-R2AU-Net model, designed specifically for brain tumor segmentation using MRI images. This architecture enhances traditional U-Net by integrating Recurrent Residual Convolutional Layers (R2CL) and Attention Gates (AGs) to improve segmentation accuracy and model efficiency. Below is a detailed breakdown of the key components depicted:
 
