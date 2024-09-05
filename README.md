@@ -9,3 +9,4 @@ Despite its advanced architecture, Mod-R2AU-Net remains computationally efficien
 # Model Architecture
 ![Graphical Abstract](https://github.com/user-attachments/assets/2459cf54-f241-4a98-92bc-cac24d3b8c0a)
 Proposed architecture of Mod-R2AU-Net for brain tumor segmentation.
+![Results](https://github.com/user-attachments/assets/3332b476-58c2-42ce-a607-1fcb3847cff6)
