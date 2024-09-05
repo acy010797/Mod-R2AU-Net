@@ -8,3 +8,4 @@ Batch Normalization (BN) is incorporated to stabilize and accelerate the trainin
 Despite its advanced architecture, Mod-R2AU-Net remains computationally efficient, reducing the number of parameters and computational demands while delivering high accuracy. With 212 GFlops and 21.3M parameters, it is a lightweight model suitable for deployment in real-world clinical settings. These optimizations allow for faster processing times and resource-friendly deployment on modern hardware, such as GPUs, making the model ideal for large-scale MRI datasets. Mod-R2AU-Net’s combination of R2CL, AGs, and BN ensures a strong balance between computational efficiency and precise brain tumor segmentation, making it a powerful tool for medical professionals and researchers.
 # Model Architecture
 ![Graphical Abstract](https://github.com/user-attachments/assets/2459cf54-f241-4a98-92bc-cac24d3b8c0a)
+Proposed architecture of Mod-R2AU-Net for brain tumor segmentation.
