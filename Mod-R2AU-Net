@@ -1,0 +1,75 @@
+import tensorflow as tf
+from tensorflow.keras import layers, Model
+
+# R2CL Block (Recurrent Residual Convolutional Layer)
+def R2CL_block(inputs, filters, t=2):
+    x = inputs
+    for _ in range(t):
+        residual = x
+        x = layers.Conv2D(filters, (3, 3), padding="same", activation='relu')(x)
+        x = layers.Conv2D(filters, (3, 3), padding="same", activation='relu')(x)
+        x = layers.Add()([residual, x])
+    return x
+
+# Attention Gate
+def attention_gate(x, g, filters):
+    x = layers.Conv2D(filters, (1, 1), padding="same")(x)
+    g = layers.Conv2D(filters, (1, 1), padding="same")(g)
+    add = layers.Add()([x, g])
+    act = layers.Activation('relu')(add)
+    psi = layers.Conv2D(1, (1, 1), padding="same")(act)
+    psi = layers.Activation('sigmoid')(psi)
+    out = layers.Multiply()([x, psi])
+    return out
+
+# Downsampling path
+def downsample_block(inputs, filters):
+    r2cl = R2CL_block(inputs, filters)
+    pool = layers.MaxPooling2D((2, 2))(r2cl)
+    return r2cl, pool
+
+# Upsampling path
+def upsample_block(inputs, skip_features, filters):
+    up = layers.Conv2DTranspose(filters, (2, 2), strides=2, padding='same')(inputs)
+    att = attention_gate(skip_features, up, filters)
+    concat = layers.Concatenate()([up, att])
+    r2cl = R2CL_block(concat, filters)
+    return r2cl
+
+# Mod-R2AU-Net model
+def ModR2AU_Net(input_shape):
+    inputs = layers.Input(input_shape)
+
+    # Preprocessing: Gaussian filter, CLAHE, Resize (Simulated with Conv layer)
+    x = layers.Conv2D(3, (3, 3), padding="same", activation='relu')(inputs)
+
+    # Encoder (Downsampling path)
+    skip1, pool1 = downsample_block(x, 16)
+    skip2, pool2 = downsample_block(pool1, 32)
+    skip3, pool3 = downsample_block(pool2, 64)
+    skip4, pool4 = downsample_block(pool3, 128)
+
+    # Bottleneck
+    bottleneck = R2CL_block(pool4, 256)
+
+    # Decoder (Upsampling path)
+    up4 = upsample_block(bottleneck, skip4, 128)
+    up3 = upsample_block(up4, skip3, 64)
+    up2 = upsample_block(up3, skip2, 32)
+    up1 = upsample_block(up2, skip1, 16)
+
+    # Output layer
+    outputs = layers.Conv2D(1, (1, 1), activation='sigmoid')(up1)
+
+    model = Model(inputs, outputs, name="Mod-R2AU-Net")
+    return model
+
+# Define input shape and create model
+input_shape = (128, 128, 3)
+model = ModR2AU_Net(input_shape)
+
+# Compile the model
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy', 'DiceCoefficient'])
+
+# Model summary
+model.summary()
