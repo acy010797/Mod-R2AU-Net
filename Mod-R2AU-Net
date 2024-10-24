@@ -339,5 +339,4 @@ def plot_metrics(history):
     plt.tight_layout()
     plt.show()
 
-# Call the function to plot the metrics
 plot_metrics(history)
