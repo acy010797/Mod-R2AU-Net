@@ -1,4 +1,4 @@
-#preprocessing
+#
 import cv2  # OpenCV for image processing
 import numpy as np  # NumPy for array manipulations
 import os  # Operating system utilities for file handling
