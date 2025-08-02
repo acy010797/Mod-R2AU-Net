@@ -54,3 +54,12 @@ We used several metrics to track the progress of training for the proposed model
 Training and Validation Metrics (Accuracy, Loss, Dice Coefficient, IoU) on BRATS 2020 Dataset.
 
 # Citation
+@article{yadav2025modified,
+  title={Modified Recurrent Residual Attention U-Net model for MRI-based brain tumor segmentation},
+  author={Yadav, Agnesh Chandra and Kolekar, Maheshkumar H and Zope, Mukesh Kumar},
+  journal={Biomedical Signal Processing and Control},
+  volume={102},
+  pages={107220},
+  year={2025},
+  publisher={Elsevier}
+}
